@@ -23,4 +23,12 @@ const PageContainer = styled("div")`
   ${opacityInAnimation()};
 `;
 
-export { opacityInAnimation, PageContainer };
+const OpacityHoverAnimation = (color: string = "#604bdf", duration: number = 0.3) => `
+color:${color} ;
+transition: opacity,background-color ${duration}s linear;
+&:hover {
+  opacity: 0.7;
+}
+`;
+
+export { opacityInAnimation, PageContainer, OpacityHoverAnimation };

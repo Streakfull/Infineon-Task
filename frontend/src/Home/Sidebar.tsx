@@ -13,11 +13,11 @@ const Sidebar = () => {
   const renderSortOptions = () => {
     const options = [
       { name: "Name", value: "name" },
-      { name: "Founding Date", value: "foundingDate" },
+      { name: "Date", value: "foundingDate" },
     ];
 
     return options.map(option => (
-      <Option>
+      <Option key={option.name}>
         <span>{option.name}</span>
         <CheckBoxContainer>
           <Radio>ASC</Radio>

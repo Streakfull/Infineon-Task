@@ -1,12 +1,9 @@
 import { Saga } from "redux-saga";
 import { all } from "redux-saga/effects";
-// import auth from "../Auth/redux/sagas";
-// import questions from "../redux/sagas/questions";
-// import questionSearch from "../QuestionSearch/redux/sagas";
-// import caseStudies from "./sagas/caseStudies";
+import companySagas from "./companySagas";
 
 function* rootSaga() {
-  yield all([].map((saga: Saga) => saga()));
+  yield all([companySagas].flatMap(saga => saga).map((saga: Saga) => saga()));
 }
 
 export default rootSaga;

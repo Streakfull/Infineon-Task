@@ -4,6 +4,7 @@ import { routerMiddleware, routerReducer } from "react-router-redux";
 import { createBrowserHistory } from "history";
 import { useDispatch } from "react-redux";
 import rootSaga from "./rootSaga";
+import companies from "./companies";
 
 const history = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();
@@ -12,6 +13,7 @@ const connectedRouterMiddleware = routerMiddleware(history);
 const store = configureStore({
   reducer: {
     routing: routerReducer,
+    companies,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(connectedRouterMiddleware, sagaMiddleware),

@@ -1,4 +1,5 @@
 import { PageContainer } from "../common/styled";
+import CompanyList from "./CompanyList";
 import Sidebar from "./Sidebar";
 import { HomePageContainer } from "./styled";
 
@@ -7,7 +8,7 @@ const Home = () => {
     <PageContainer>
       <HomePageContainer>
         <Sidebar />
-        HI FROM HOME PAGE
+        <CompanyList />
       </HomePageContainer>
     </PageContainer>
   );
