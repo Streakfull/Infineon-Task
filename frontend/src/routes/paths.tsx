@@ -1,4 +1,5 @@
 import { EPageNames } from "../types";
+import Home from "../Home";
 
 type IPaths = {
   [key in EPageNames]: {
@@ -15,7 +16,7 @@ type TPaths = {
 };
 
 const paths: TPaths = {
-  [EPageNames.HOME]: { path: "/", Component: () => <div>HI HERE???</div> },
+  [EPageNames.HOME]: { path: "/", Component: Home },
   [EPageNames.COMPANY_PROFILE]: { path: "/profile", Component: () => <div>HI2</div> },
 };
 
