@@ -17,14 +17,14 @@ const show = async (req: Request, res: Response) => {
 };
 
 const create = async (req: Request, res: Response) => {
-  const { company: companyParams } = req.body;
+  const { body: companyParams } = req;
   const company = await Company.create(companyParams);
   //if !company here
   return res.send({ company });
 };
 
 const update = async (req: Request, res: Response) => {
-  const { company: companyParams } = req.body;
+  const { body: companyParams } = req;
   const { id } = req.params;
   const company = await Company.findByIdAndUpdate(id, companyParams, { new: true });
   //if !company here

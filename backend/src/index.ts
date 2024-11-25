@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
 import companies from "./routes/companies";
+import handleDBError from "./middleware/errorHandler";
 
 dotenv.config();
 
@@ -22,6 +23,9 @@ app.use(
 app.use(cors());
 
 app.use("/companies", companies);
+
+//@ts-ignore
+app.use(handleDBError);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
