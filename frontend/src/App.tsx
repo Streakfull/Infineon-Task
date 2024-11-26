@@ -6,7 +6,6 @@ import theme from "./theme";
 const App = () => {
   usePageChangeScroll();
 
-  console.log("HERE??", "OK????");
   return (
     <ThemeProvider theme={theme}>
       <div>

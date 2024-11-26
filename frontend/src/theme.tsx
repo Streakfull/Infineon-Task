@@ -5,6 +5,8 @@ const colors = {
   navyBlue: "#252B48",
   darkGray: "#303030",
   lightGray: "#909090",
+  errorRed: "#FF4D4F",
+  brightGreen: "#52C41A",
 };
 
 const breakPoints = {

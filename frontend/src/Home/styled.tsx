@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { OpacityHoverAnimation, opacityInAnimation } from "../common/styled";
+import { Tag } from "antd";
 
 const SideBarContainer = styled("div")`
+  position: fixed;
   width: 320px;
   min-height: 100vh;
   background: ${props => props.theme.colors.navyBlue};
@@ -11,6 +13,9 @@ const SideBarContainer = styled("div")`
   color: ${props => props.theme.colors.white};
   h3 {
     margin: 0;
+  }
+  ${props => props.theme.mediaQuery.down("sm")} {
+    display: none;
   }
 `;
 
@@ -64,8 +69,13 @@ const CheckBoxContainer = styled("div")`
 `;
 
 const CompanyListContainer = styled("div")`
-  width: 100%;
+  width: calc(100% - 320px);
+  margin-left: 320px;
   padding-top: 25px;
+  ${props => props.theme.mediaQuery.down("sm")} {
+    width: 100%;
+    margin-left: 0;
+  }
 `;
 
 const HeaderContainer = styled("div")`
@@ -73,11 +83,19 @@ const HeaderContainer = styled("div")`
   margin: auto;
   display: flex;
   gap: 16px;
+  ${props => props.theme.mediaQuery.down("sm")} {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
   svg {
     cursor: pointer;
     width: 24px;
     height: 24px;
     ${OpacityHoverAnimation()};
+  }
+
+  ${props => props.theme.mediaQuery.down("sm")} {
+    width: 100%;
   }
 `;
 
@@ -98,16 +116,23 @@ const SpinnerContainer = styled("div")`
   height: 100%;
 `;
 
-const CompanyCardContainer = styled("div")`
+const CardWrapper = styled("div")`
   background: ${props => props.theme.colors.white};
   border-radius: 8px;
   transition: all 0.2s linear;
   position: relative;
   align-self: stretch;
   box-sizing: border-box;
-  cursor: pointer;
   width: calc(25% - 30px);
-  position: relative;
+  ${props => props.theme.mediaQuery.down("sm")} {
+    width: 100%;
+  }
+  .highlight {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+  }
+
   &:hover {
     transform: scale(1.1);
   }
@@ -115,6 +140,10 @@ const CompanyCardContainer = styled("div")`
   img {
     border-radius: 8px 8px 0px 0px;
   }
+`;
+
+const CompanyCardContainer = styled("div")<{ loading?: boolean }>`
+  opacity: ${props => (props.loading ? 0.5 : 1)};
 `;
 
 const CardContentContainer = styled("div")`
@@ -164,6 +193,44 @@ const PaginationContainer = styled("div")`
   margin-top: 32px;
 `;
 
+const CardSpinner = styled("div")`
+  position: absolute;
+  z-index: 10;
+  opacity: 1;
+  transform: translate(-50%, -50%); /* Center the element */
+  top: 50%;
+  left: 50%;
+  text-align: center;
+`;
+
+const ModalContent = styled("div")``;
+
+const ModalBody = styled("div")`
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .req {
+    color: red;
+  }
+`;
+
+const FeedbackMessage = styled("div")<{ isError?: boolean }>`
+  padding: 20px;
+  margin-top: 16px;
+  border-radius: 8px;
+  background: ${props =>
+    props.isError ? props.theme.colors.errorRed : props.theme.colors.brightGreen};
+  ${opacityInAnimation()};
+`;
+
+const ScoreTag = styled(Tag)`
+  position: absolute;
+  top: -8px;
+  z-index: 100;
+  left: 5px;
+`;
 export {
   SideBarContainer,
   HomePageContainer,
@@ -184,4 +251,10 @@ export {
   CompanyDate,
   CompanyControlsContainer,
   PaginationContainer,
+  CardSpinner,
+  CardWrapper,
+  ModalContent,
+  ModalBody,
+  FeedbackMessage,
+  ScoreTag,
 };
