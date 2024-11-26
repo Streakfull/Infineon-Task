@@ -84,6 +84,11 @@ const HeaderContainer = styled("div")`
 const ContentContainer = styled("div")`
   padding-left: 16px;
   padding-right: 16px;
+  display: flex;
+  gap: 32px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const SpinnerContainer = styled("div")`
@@ -91,6 +96,72 @@ const SpinnerContainer = styled("div")`
   justify-content: center;
   align-items: center;
   height: 100%;
+`;
+
+const CompanyCardContainer = styled("div")`
+  background: ${props => props.theme.colors.white};
+  border-radius: 8px;
+  transition: all 0.2s linear;
+  position: relative;
+  align-self: stretch;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: calc(25% - 30px);
+  position: relative;
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  img {
+    border-radius: 8px 8px 0px 0px;
+  }
+`;
+
+const CardContentContainer = styled("div")`
+  padding: 8px;
+  padding-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+const CompanyTitle = styled("div")`
+  font-weight: 700;
+`;
+
+const CompanyDescription = styled("div")`
+  color: ${props => props.theme.colors.darkGray};
+`;
+
+const CompanyDate = styled("span")`
+  color: ${props => props.theme.colors.lightGray};
+`;
+
+const CompanyControlsContainer = styled("div")`
+  padding-top: 16px;
+  border-top: 1px solid ${props => props.theme.colors.lightGray};
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 16px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: absolute;
+  bottom: 0;
+  svg {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    ${OpacityHoverAnimation()};
+  }
+`;
+
+const PaginationContainer = styled("div")`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 32px;
+  margin-top: 32px;
 `;
 
 export {
@@ -106,4 +177,11 @@ export {
   HeaderContainer,
   ContentContainer,
   SpinnerContainer,
+  CompanyCardContainer,
+  CompanyTitle,
+  CardContentContainer,
+  CompanyDescription,
+  CompanyDate,
+  CompanyControlsContainer,
+  PaginationContainer,
 };

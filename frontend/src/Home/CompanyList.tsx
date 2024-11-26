@@ -4,6 +4,7 @@ import {
   CompanyListContainer,
   ContentContainer,
   HeaderContainer,
+  PaginationContainer,
   SpinnerContainer,
 } from "./styled";
 import { PlusCircleOutlined } from "@ant-design/icons";
@@ -13,22 +14,31 @@ import { useSelector } from "react-redux";
 import { selector, actions } from "../redux/companies";
 import { useEffect } from "react";
 import { useAppDispatch } from "../redux/store";
+import CompanyCard from "./CompanyCard";
+import { Pagination } from "antd";
 
 const CompanyList = () => {
   const { companies, meta, loadingFetch } = useSelector(selector);
-  const [currentPage, setCurrentPage] = useState(1);
+
   const dispatch = useAppDispatch();
 
-  console.log(companies, meta, "COMPANIES");
+  const onChangePagination = (page: number) => {
+    window.scrollTo(0, 0);
+    dispatch(actions.fetchRequest({ page }));
+  };
 
   useEffect(() => {
-    dispatch(actions.fetchRequest({ page: currentPage }));
+    dispatch(actions.fetchRequest({ page: 1 }));
   }, []);
+
+  const renderCompanies = () => {
+    return companies.map(company => <CompanyCard key={company._id} {...company} />);
+  };
   return (
     <CompanyListContainer>
       <HeaderContainer>
         <Space.Compact style={{ width: "100%" }}>
-          <Input defaultValue='Search relevant terms...' />
+          <Input placeholder='Search relevant terms...' />
           <Button type='primary'>Apply</Button>
         </Space.Compact>
         <Tooltip title='Create Company'>
@@ -40,7 +50,20 @@ const CompanyList = () => {
           <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} />
         </SpinnerContainer>
       ) : (
-        <ContentContainer></ContentContainer>
+        <ContentContainer>{renderCompanies()}</ContentContainer>
+      )}
+
+      {meta && (
+        <PaginationContainer>
+          <Pagination
+            simple
+            showSizeChanger={false}
+            defaultCurrent={1}
+            current={meta.current_page}
+            total={meta.total_entries}
+            onChange={onChangePagination}
+          />
+        </PaginationContainer>
       )}
     </CompanyListContainer>
   );

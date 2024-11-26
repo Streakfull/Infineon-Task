@@ -3,6 +3,8 @@ const colors = {
   white: "#fff",
   background: "#F5F5F5",
   navyBlue: "#252B48",
+  darkGray: "#303030",
+  lightGray: "#909090",
 };
 
 const breakPoints = {

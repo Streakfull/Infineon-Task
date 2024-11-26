@@ -4,8 +4,9 @@ import { RootState } from "./store";
 interface ICompany {
   name: string;
   description: string;
-  foundingDate?: string;
+  foundingDate: string;
   imageUrl?: string;
+  _id: string;
 }
 
 interface ICompanies {
@@ -62,6 +63,7 @@ const slice = createSlice({
   },
 });
 
+export type { ICompany };
 const selector = (state: RootState) => state.companies;
 
 const actions = { ...slice.actions };
