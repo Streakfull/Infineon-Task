@@ -36,15 +36,17 @@ const populate = async () => {
     count: TOTAL_POPULATE_COMPANIES - top100Companies.length,
   });
 
-  const allCompanies = [...randomCompanies, ...top100Companies];
+  const allCompanies = [...randomCompanies, ];
 
   if (!DB_CONNECTION_STRING) throw new Error("DB connection string not valid");
   await mongoose.connect(DB_CONNECTION_STRING);
   await Company.deleteMany({});
   const promises = allCompanies.map(company => Company.create(company));
   await Promise.all(promises);
+  const top100Promises = top100Companies.map(company=> Company.create(company));
+  await Promise.all(top100Promises)
 };
 
-populate();
+//populate();
 
 export default populate;
