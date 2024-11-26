@@ -5,6 +5,8 @@ dotenv.config();
 
 const { DB_CONNECTION_STRING } = process.env;
 
+console.log(DB_CONNECTION_STRING,"DB")
+
 const mongooseConnect = async (cb?: () => void) => {
   if (!DB_CONNECTION_STRING) throw new Error("DB connection string not valid");
   mongoose.connect(DB_CONNECTION_STRING);

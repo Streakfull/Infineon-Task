@@ -11,12 +11,10 @@ export default defineConfig(({ mode }) => {
       open: true, // If we want to open the app once its started
     },
     build: {
+      outDir:'dist/',
       rollupOptions: {
         external: [
-          "redux-thunk",
-          "use-sync-external-store",
-          "use-sync-external-store/shim",
-          "use-sync-external-store/shim/with-selector",
+       
         ],
       },
     },

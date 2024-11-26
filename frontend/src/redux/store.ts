@@ -10,6 +10,7 @@ const history = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();
 const connectedRouterMiddleware = routerMiddleware(history);
 
+//@ts-ignore
 const store = configureStore({
   reducer: {
     routing: routerReducer,
