@@ -1,10 +1,5 @@
 node_modules
 node_modules/*
 .env
-<<<<<<< HEAD
-dist
-dist/*
-=======
 dist/*
 dist
->>>>>>> 4b92d161e35fa1a23558b7258999dcd4c07b1545

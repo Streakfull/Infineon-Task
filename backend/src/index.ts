@@ -6,18 +6,20 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import companies from "./routes/companies";
 import handleDBError from "./middleware/errorHandler";
-import populate from './utils/populate';
+import populate from "./utils/populate";
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
-const isPopulate = process.env.POPULATE === "true"
+const isPopulate = process.env.POPULATE === "true";
 
 mongooseConnect();
 
-if(isPopulate)
+if (isPopulate) {
+  console.log("Populating DB");
   populate();
+}
 
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(
@@ -36,4 +38,3 @@ app.use(handleDBError);
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
-
