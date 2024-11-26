@@ -29,8 +29,8 @@ can add new companies to the system.
 * API: https://sleepy-dusk-93638-7059c98bb26d.herokuapp.com/companies
 ---
 ## Run Locally using docker
- * `docker-compose --build`
- * `docker-compose up`
+ * `docker compose build`
+ * `docker compose up`
 This will start the API, Front end and Database server.
 
 **Note 1: Setting the `services.backend.environment.POPULATE` flag to `true` in the `docker-compose.yml` file will create 10k dummy companies on server startup**
