@@ -36,7 +36,7 @@ const populate = async () => {
     count: TOTAL_POPULATE_COMPANIES - top100Companies.length,
   });
 
-  const allCompanies = [...top100Companies, ...randomCompanies];
+  const allCompanies = [...randomCompanies, ...top100Companies];
 
   if (!DB_CONNECTION_STRING) throw new Error("DB connection string not valid");
   await mongoose.connect(DB_CONNECTION_STRING);

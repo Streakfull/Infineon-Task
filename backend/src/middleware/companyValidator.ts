@@ -5,7 +5,7 @@ const upsertSchema = Joi.object({
   //description: Joi.string().required().min(500),
   description: Joi.string().required(),
   image_url: Joi.string().optional(),
-  foundingDate: Joi.date().timestamp().optional(),
+  foundingDate: Joi.date().iso().optional(),
 });
 
 export { upsertSchema };

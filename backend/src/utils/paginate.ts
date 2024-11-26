@@ -11,25 +11,30 @@ const paginate = async (
     page = 1,
     per_page = 10,
     query,
-    show_all,
+    show_all: showAllString,
+    sort,
+    showAll,
+    search,
     ...requestFilterQuery
   } = paginationQuery;
-  //const searchQuery = query ? generateSearchQuery(model, query) : {};
 
   const combinedQuery = {
     //...searchQuery,
     ...requestFilterQuery,
     ...filterQuery,
   };
+
   const totalEntries = await model.countDocuments(combinedQuery);
   const parsedPage = parseInt(page);
   const parsedPerPage = parseInt(per_page);
 
+  const show_all = showAllString ? JSON.parse(showAllString as string) : false;
+
   const data = await model
     .find(combinedQuery)
-    //.select(selectQuery)
     .skip((parsedPage - 1) * parsedPerPage)
     .limit(show_all ? totalEntries : parsedPerPage)
+    .limit(parsedPerPage)
     .sort(sortQuery);
   const totalPages = Math.ceil(totalEntries / parsedPerPage);
   const nextPage = parsedPage >= totalPages ? null : parsedPage + 1;
@@ -47,4 +52,13 @@ const paginate = async (
   };
 };
 
+const search = async (model: Model<any>, searchString: string) => {
+  const entries = model
+    .find({ $text: { $search: searchString } }, { score: { $meta: "textScore" } })
+    .sort({ score: { $meta: "textScore" } })
+    .limit(500);
+  return entries;
+};
+
+export { search };
 export default paginate;

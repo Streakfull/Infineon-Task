@@ -17,6 +17,7 @@ const handleDBError = (
   next: NextFunction
 ) => {
   if (!error) return next();
+
   const { code, keyPattern } = error;
   const field = Object.keys(keyPattern)[0];
 
