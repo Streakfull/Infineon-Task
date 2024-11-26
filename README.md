@@ -78,5 +78,6 @@ This will start the API, Front end and Database server.
 * Better mobile responsiveness
 * Error Handling
 * API rate limiting
+* Company Profile Page
 
 ---
